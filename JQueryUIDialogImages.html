@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>JQuery: Modal imagens</title>
+		
+		<link href="jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet">
+		
+		<style>
+			#conteudo {
+				width: 500px;
+			}
+			#fundoModal {
+				display: none;
+				position:fixed; 
+				top:0; left:0; 
+				width:100%; height:100%; 
+				background: rgba(0,0,0,.5);
+			}
+			#janela {
+				background: white;
+				width:310px;
+				margin: 50px auto;
+				padding: 5px;
+			}
+			#janela img {
+				width:290px;
+			}
+			.exibirImagem img {
+				width:120px;
+			}
+		</style>
+		
+	</head>
+	<body>	
+		
+		<div id="conteudo">
+			<h1>Exemplo de janela modal</h1>
+			<p>Neste exemplo, estaremos abrindo uma janela modal no centro da página, colocando todo o restante da página em uma cor mais escura, fechando a janela quando o usuário clicar no botão de fechar. Só que desta vez, a modal mostrará a imagem que escolhermos:</p>
+			<p><a class="exibirImagem" href="javascript:void(0);" data-src="img/img1.jpg"><img src="img/img1.jpg"></a></p>
+			<p><a class="exibirImagem" href="javascript:void(0);" data-src="img/img2.jpg"><img src="img/img2.jpg"></a></p>
+			<p><a class="exibirImagem" href="javascript:void(0);" data-src="img/img3.jpg"><img src="img/img3.jpg"></a></p>
+			<p><a class="exibirImagem" href="javascript:void(0);" data-src="img/img4.jpg"><img src="img/img4.jpg"></a></p>
+			<p><a class="exibirImagem" href="javascript:void(0);" data-src="img/img5.jpg"><img src="img/img5.jpg"></a></p>
+		</div>
+		
+		<div id="fundoModal">	
+			<div id="janela" title="Exibir imagem">
+			  <img id="imagem" src="">
+			</div>
+		<div id="fundoModal">
+		
+		<script src="jquery-ui-1.12.1/external/jquery/jquery.js"></script>
+		<script src="jquery-ui-1.12.1/jquery-ui.js"></script>
+	
+		<script>			
+			$(function() {
+				$("#janela").dialog({
+					autoOpen: false
+				});
+			});
+
+			$("#janela").on("dialogclose", function() {
+				$("#fundoModal").hide();
+			});			
+			
+			$(".exibirImagem").on( "click", function() {
+				$("#fundoModal").show();
+				$("#janela").dialog( "open" );
+				$("#imagem").attr("src", $(this).data("src"));
+			});
+		</script>
+	
+	</body>
+</html>
